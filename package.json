@@ -1,0 +1,51 @@
+{
+	"name": "tree-sitter-nunjucks",
+	"version": "0.1.0",
+	"description": "Nunjucks grammar for tree-sitter",
+	"repository": "https://github.com/stormwarning/tree-sitter-nunjucks",
+	"license": "ISC",
+	"author": "Jeff Nelson (https://tidaltheory.io)",
+	"main": "bindings/node",
+	"types": "bindings/node",
+	"keywords": [
+		"incremental",
+		"parsing",
+		"tree-sitter",
+		"nunjucks"
+	],
+	"files": [
+		"grammar.js",
+		"tree-sitter.json",
+		"binding.gyp",
+		"prebuilds/**",
+		"bindings/node/*",
+		"queries/*",
+		"src/**",
+		"*.wasm"
+	],
+	"dependencies": {
+		"node-addon-api": "8.5.0",
+		"node-gyp-build": "4.8.4"
+	},
+	"devDependencies": {
+		"eslint": "9.31.0",
+		"eslint-config-treesitter": "1.0.2",
+		"tree-sitter-cli": "0.25.8",
+		"prebuildify": "6.0.1"
+	},
+	"peerDependencies": {
+		"tree-sitter": "^0.21.1"
+	},
+	"peerDependenciesMeta": {
+		"tree-sitter": {
+			"optional": true
+		}
+	},
+	"scripts": {
+		"install": "node-gyp-build",
+		"lint": "eslint grammar.js",
+		"prestart": "tree-sitter build --wasm",
+		"start": "tree-sitter playground",
+		"test": "node --test bindings/node/*_test.js"
+	}
+}
