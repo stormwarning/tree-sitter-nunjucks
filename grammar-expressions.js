@@ -1,4 +1,4 @@
-const { separated, separated1 } = require('./grammar-rules')
+const { separated, separated1 } = require('./grammar-rules.js')
 
 exports.rules = {
 	_expression: ($) =>

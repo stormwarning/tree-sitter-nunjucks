@@ -1,3 +1,5 @@
+const { separated, separated1 } = require('./grammar-rules.js')
+
 exports.rules = {
 	_statement: ($) =>
 		seq(
@@ -39,7 +41,7 @@ exports.rules = {
 	do_statement: ($) => seq('do', $._expression),
 	autoescape_statement: ($) => seq('autoescape', optional($.boolean_literal)),
 	trans_statement: ($) =>
-		seq('trans', commaSep(choice($.identifier, $.assignment_expression))),
+		seq('trans', separated(choice($.identifier, $.assignment_expression))),
 	pluralize_statement: ($) => seq('pluralize', optional($.identifier)),
 	ternary_expression: ($) =>
 		seq('if', $._expression, optional(seq('else', $._expression))),
@@ -61,12 +63,12 @@ exports.rules = {
 		seq(
 			optional($.import_from),
 			'import',
-			seq(choice(commaSep1($.identifier), $.string_literal)),
+			seq(choice(separated1($.identifier), $.string_literal)),
 			optional($.import_as),
 			optional($.import_attribute),
 		),
 	import_from: ($) => seq('from', $.string_literal),
-	import_as: ($) => seq('as', commaSep1($.identifier)),
+	import_as: ($) => seq('as', separated1($.identifier)),
 	import_attribute: ($) => $.attribute_context,
 	include_statement: ($) =>
 		seq(
@@ -80,7 +82,7 @@ exports.rules = {
 	set_statement: ($) =>
 		seq(
 			'set',
-			commaSep1($._expression),
+			separated1($._expression),
 			alias('=', $.binary_operator),
 			$._expression,
 			optional($.ternary_expression),
