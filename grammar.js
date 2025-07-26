@@ -15,7 +15,7 @@ module.exports = grammar({
 
 	rules: {
 		template: ($) =>
-			repeat(choice($.expression_tag, $.statement_tag, $.content)),
+			repeat(choice($.expression_tag, $.statement_tag, $.comment_tag, $.content)),
 
 		expression_tag: ($) =>
 			seq(
@@ -30,6 +30,8 @@ module.exports = grammar({
 				optional($.statement),
 				choice('-%}', '%}', '+%}'),
 			),
+
+		comment_tag: (_) => seq('{#', repeat(choice(/[^#]+/, '#')), '#}'),
 
 		/**
 		 * Expressions.
