@@ -7,10 +7,6 @@
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 
-const { rules: expressionRules } = require('./grammar-expressions.js')
-const { rules: literalRules } = require('./grammar-literals.js')
-const { rules: statementRules } = require('./grammar-statements.js')
-
 module.exports = grammar({
 	name: 'nunjucks',
 
