@@ -27,7 +27,14 @@ module.exports = grammar({
 		statement_tag: ($) =>
 			seq(
 				choice('{%', '{%-', '{%+'),
-				optional($.statement),
+				optional(choice(
+					$.if_statement,
+					$.else_statement,
+					$.for_statement,
+					$.async_each_statement,
+					$.async_all_statement,
+					$.end_statement,
+				),),
 				choice('-%}', '%}', '+%}'),
 			),
 
@@ -102,10 +109,16 @@ module.exports = grammar({
 
 		if_statement: ($) => seq('if', $.expression),
 
+		else_statement: (_) => 'else',
+
 		for_statement: ($) =>
 			seq('for', separated1($.identifier), 'in', $.expression),
 
-		end_statement: ($) => choice('endif', 'endfor'),
+		async_each_statement: ($) => seq('asyncEach', separated1($.identifier), 'in', $.expression),
+
+		async_all_statement: ($) => seq('asyncAll', separated1($.identifier), 'in', $.expression),
+
+		end_statement: ($) => choice('endif', 'endfor', 'endeach', 'endall'),
 
 		/**
 		 * Literals.

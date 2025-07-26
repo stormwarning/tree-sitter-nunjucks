@@ -1,33 +1,122 @@
-===============
-Statements
-===============
+================
+Basic statements
+================
 
-<ul>
-{% for item in sequence %}
-	<li>{{ item }}</li>
-{% endfor %}
-</ul>
+<div>
+{% %}
+</div>
+
+--------
+
+(template
+	(content)
+	(statement_tag)
+	(content))
+
+================
+If statement
+================
+
+{% if hungry %}
+{% elif tired %}
+{% else %}
+{% endif %}
 
 --------
 
 (template
 	(content)
 	(statement_tag
-		(statement
-			(for_statement
-				(identifier)
+		(if_statement
+			(expression
+				(unary_expression
+					(primary_expression
+						(identifier))))))
+	(content)
+	(statement_tag
+		(if_statement
+			(expression
+				(unary_expression
+					(primary_expression
+						(identifier))))))
+	(content)
+	(statement_tag
+		(else_statement))
+	(content)
+	(statement_tag
+		(end_statement))
+	(content))
+
+================
+For statement
+================
+
+{% for item in object.items %}
+{% for ingredient, amount in food %}
+{% endfor %}
+
+--------
+
+(template
+	(content)
+	(statement_tag
+		(for_statement
+			(identifier)
+			(expression
+				(expression
+					(unary_expression
+						(primary_expression
+							(identifier))))
 				(expression
 					(unary_expression
 						(primary_expression
 							(identifier)))))))
 	(content)
-	(expression_tag
-		(expression
-			(unary_expression
-				(primary_expression
-					(identifier)))))
+	(statement_tag
+		(for_statement
+			(identifier)
+			(identifier)
+			(expression
+				(unary_expression
+					(primary_expression
+						(identifier))))))
 	(content)
 	(statement_tag
-		(statement
-			(end_statement)))
+		(end_statement))
+	(content))
+
+================
+Async loop statements
+================
+
+{% asyncEach item in items %}
+{% endeach %}
+{% asyncAll item in items %}
+{% endall %}
+
+--------
+
+(template
+	(content)
+	(statement_tag
+		(async_each_statement
+			(identifier)
+			(expression
+				(unary_expression
+					(primary_expression
+						(identifier))))))
+	(content)
+	(statement_tag
+		(end_statement))
+	(content)
+	(statement_tag
+		(async_all_statement
+			(identifier)
+			(expression
+				(unary_expression
+					(primary_expression
+						(identifier))))))
+	(content)
+	(statement_tag
+		(end_statement))
 	(content))

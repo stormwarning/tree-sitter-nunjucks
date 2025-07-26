@@ -17,6 +17,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "comment_tag"
+          },
+          {
+            "type": "SYMBOL",
             "name": "content"
           }
         ]
@@ -114,8 +118,25 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "statement"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "if_statement"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "else_statement"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "for_statement"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "end_statement"
+                }
+              ]
             },
             {
               "type": "BLANK"
@@ -138,6 +159,35 @@
               "value": "+%}"
             }
           ]
+        }
+      ]
+    },
+    "comment_tag": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{#"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[^#]+"
+              },
+              {
+                "type": "STRING",
+                "value": "#"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "#}"
         }
       ]
     },
@@ -499,12 +549,100 @@
         }
       ]
     },
+    "else_statement": {
+      "type": "STRING",
+      "value": "else"
+    },
     "for_statement": {
       "type": "SEQ",
       "members": [
         {
           "type": "STRING",
           "value": "for"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "in"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        }
+      ]
+    },
+    "async_each_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "asyncEach"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": ","
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "in"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        }
+      ]
+    },
+    "async_all_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "asyncAll"
         },
         {
           "type": "SEQ",
@@ -551,6 +689,14 @@
         {
           "type": "STRING",
           "value": "endfor"
+        },
+        {
+          "type": "STRING",
+          "value": "endeach"
+        },
+        {
+          "type": "STRING",
+          "value": "endall"
         }
       ]
     },
