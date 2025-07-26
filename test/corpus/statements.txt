@@ -120,3 +120,41 @@ Async loop statements
 	(statement_tag
 		(end_statement))
 	(content))
+
+================
+Macro statements
+================
+
+{% macro field(name, value='', type='text') %}
+{% endmacro %}
+
+--------
+
+(template
+	(content)
+	(statement_tag
+		(macro_statement
+			(function_call
+				(identifier)
+				(expression
+					(unary_expression
+						(primary_expression
+							(identifier))))
+				(identifier)
+				(binary_operator)
+				(expression
+					(unary_expression
+						(primary_expression
+							(literal
+								(string_literal)))))
+				(identifier)
+				(binary_operator)
+				(expression
+					(unary_expression
+						(primary_expression
+							(literal
+								(string_literal))))))))
+	(content)
+	(statement_tag
+		(end_statement))
+	(content))

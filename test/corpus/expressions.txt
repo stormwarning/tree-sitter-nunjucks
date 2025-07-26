@@ -266,6 +266,7 @@ Function calls
 ================
 
 {{ foo(1, 2, 3) }}
+{{ foo(1, 2, bar=3, baz=4) }}
 
 --------
 
@@ -295,4 +296,39 @@ Function calls
 									(literal
 										(number_literal
 											(dec_literal)))))))))))
+	(content)
+		(expression_tag
+			(expression
+				(unary_expression
+					(primary_expression
+						(function_call
+							(identifier)
+							(expression
+								(unary_expression
+									(primary_expression
+										(literal
+											(number_literal
+												(dec_literal))))))
+							(expression
+								(unary_expression
+									(primary_expression
+										(literal
+											(number_literal
+												(dec_literal))))))
+							(identifier)
+							(binary_operator)
+							(expression
+								(unary_expression
+									(primary_expression
+										(literal
+											(number_literal
+												(dec_literal))))))
+							(identifier)
+							(binary_operator)
+							(expression
+								(unary_expression
+									(primary_expression
+										(literal
+											(number_literal
+												(dec_literal)))))))))))
 	(content))

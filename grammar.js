@@ -14,7 +14,9 @@ module.exports = grammar({
 
 	rules: {
 		template: ($) =>
-			repeat(choice($.expression_tag, $.statement_tag, $.comment_tag, $.content)),
+			repeat(
+				choice($.expression_tag, $.statement_tag, $.comment_tag, $.content),
+			),
 
 		expression_tag: ($) =>
 			seq(
@@ -33,6 +35,7 @@ module.exports = grammar({
 						$.for_statement,
 						$.async_each_statement,
 						$.async_all_statement,
+						$.macro_statement,
 						$.end_statement,
 					),
 				),
@@ -93,12 +96,17 @@ module.exports = grammar({
 				seq('(', $.expression, ')'),
 			),
 
-		/** @todo Should the args be its own type? */
 		function_call: ($) =>
 			seq(
 				$.identifier,
 				'(',
-				separated(seq($.expression, optional($.ternary_expression))),
+				separated(
+					seq(
+						optional(seq($.identifier, alias('=', $.binary_operator))),
+						$.expression,
+						optional($.ternary_expression),
+					),
+				),
 				')',
 			),
 
@@ -119,7 +127,10 @@ module.exports = grammar({
 		async_all_statement: ($) =>
 			seq('asyncAll', separated1($.identifier), 'in', $.expression),
 
-		end_statement: ($) => choice('endif', 'endfor', 'endeach', 'endall'),
+		macro_statement: ($) => seq('macro', $.function_call),
+
+		end_statement: ($) =>
+			choice('endif', 'endfor', 'endeach', 'endall', 'endmacro'),
 
 		/**
 		 * Literals.

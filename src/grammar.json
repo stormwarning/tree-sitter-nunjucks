@@ -142,6 +142,10 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "macro_statement"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "end_statement"
                 }
               ]
@@ -464,6 +468,32 @@
                   "type": "SEQ",
                   "members": [
                     {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "SYMBOL",
+                              "name": "identifier"
+                            },
+                            {
+                              "type": "ALIAS",
+                              "content": {
+                                "type": "STRING",
+                                "value": "="
+                              },
+                              "named": true,
+                              "value": "binary_operator"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "BLANK"
+                        }
+                      ]
+                    },
+                    {
                       "type": "SYMBOL",
                       "name": "expression"
                     },
@@ -493,6 +523,32 @@
                       {
                         "type": "SEQ",
                         "members": [
+                          {
+                            "type": "CHOICE",
+                            "members": [
+                              {
+                                "type": "SEQ",
+                                "members": [
+                                  {
+                                    "type": "SYMBOL",
+                                    "name": "identifier"
+                                  },
+                                  {
+                                    "type": "ALIAS",
+                                    "content": {
+                                      "type": "STRING",
+                                      "value": "="
+                                    },
+                                    "named": true,
+                                    "value": "binary_operator"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "BLANK"
+                              }
+                            ]
+                          },
                           {
                             "type": "SYMBOL",
                             "name": "expression"
@@ -683,6 +739,19 @@
         }
       ]
     },
+    "macro_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "macro"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_call"
+        }
+      ]
+    },
     "end_statement": {
       "type": "CHOICE",
       "members": [
@@ -701,6 +770,10 @@
         {
           "type": "STRING",
           "value": "endall"
+        },
+        {
+          "type": "STRING",
+          "value": "endmacro"
         }
       ]
     },
