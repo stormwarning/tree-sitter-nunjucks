@@ -7,8 +7,6 @@
 			"title": "Nunjucks",
 			"scope": "source.nunjucks",
 			"file-types": ["njk"],
-			"highlights": "queries/highlights.scm",
-			"injections": "queries/injections.scm",
 			"injection-regex": "^nunjucks$",
 			"class-name": "TreeSitterNunjucks"
 		}
