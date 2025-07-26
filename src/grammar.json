@@ -134,6 +134,14 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "async_each_statement"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "async_all_statement"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "end_statement"
                 }
               ]
@@ -148,11 +156,11 @@
           "members": [
             {
               "type": "STRING",
-              "value": "-%}"
+              "value": "%}"
             },
             {
               "type": "STRING",
-              "value": "%}"
+              "value": "-%}"
             },
             {
               "type": "STRING",
@@ -519,29 +527,25 @@
         }
       ]
     },
-    "statement": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "if_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "for_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "end_statement"
-        }
-      ]
-    },
     "if_statement": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "if"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "if"
+            },
+            {
+              "type": "STRING",
+              "value": "elif"
+            },
+            {
+              "type": "STRING",
+              "value": "elseif"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
@@ -1123,24 +1127,7 @@
   ],
   "conflicts": [],
   "precedences": [],
-  "externals": [
-    {
-      "type": "SYMBOL",
-      "name": "raw_start"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "_raw_char"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "raw_end"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "_inline_words"
-    }
-  ],
+  "externals": [],
   "inline": [],
   "supertypes": [],
   "reserved": {}

@@ -11,7 +11,6 @@ module.exports = grammar({
 	name: 'nunjucks',
 
 	extras: (_) => [/\s/],
-	externals: ($) => [$.raw_start, $._raw_char, $.raw_end, $._inline_words],
 
 	rules: {
 		template: ($) =>
@@ -27,15 +26,17 @@ module.exports = grammar({
 		statement_tag: ($) =>
 			seq(
 				choice('{%', '{%-', '{%+'),
-				optional(choice(
-					$.if_statement,
-					$.else_statement,
-					$.for_statement,
-					$.async_each_statement,
-					$.async_all_statement,
-					$.end_statement,
-				),),
-				choice('-%}', '%}', '+%}'),
+				optional(
+					choice(
+						$.if_statement,
+						$.else_statement,
+						$.for_statement,
+						$.async_each_statement,
+						$.async_all_statement,
+						$.end_statement,
+					),
+				),
+				choice('%}', '-%}', '+%}'),
 			),
 
 		comment_tag: (_) => seq('{#', repeat(choice(/[^#]+/, '#')), '#}'),
@@ -105,18 +106,18 @@ module.exports = grammar({
 		 * Statements.
 		 */
 
-		statement: ($) => choice($.if_statement, $.for_statement, $.end_statement),
-
-		if_statement: ($) => seq('if', $.expression),
+		if_statement: ($) => seq(choice('if', 'elif', 'elseif'), $.expression),
 
 		else_statement: (_) => 'else',
 
 		for_statement: ($) =>
 			seq('for', separated1($.identifier), 'in', $.expression),
 
-		async_each_statement: ($) => seq('asyncEach', separated1($.identifier), 'in', $.expression),
+		async_each_statement: ($) =>
+			seq('asyncEach', separated1($.identifier), 'in', $.expression),
 
-		async_all_statement: ($) => seq('asyncAll', separated1($.identifier), 'in', $.expression),
+		async_all_statement: ($) =>
+			seq('asyncAll', separated1($.identifier), 'in', $.expression),
 
 		end_statement: ($) => choice('endif', 'endfor', 'endeach', 'endall'),
 

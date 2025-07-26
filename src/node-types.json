@@ -1,5 +1,43 @@
 [
   {
+    "type": "async_all_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "async_each_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "big_dec_literal",
     "named": true,
     "fields": {},
@@ -299,6 +337,14 @@
       "required": false,
       "types": [
         {
+          "type": "async_all_statement",
+          "named": true
+        },
+        {
+          "type": "async_each_statement",
+          "named": true
+        },
+        {
           "type": "else_statement",
           "named": true
         },
@@ -542,6 +588,14 @@
     "named": false
   },
   {
+    "type": "asyncAll",
+    "named": false
+  },
+  {
+    "type": "asyncEach",
+    "named": false
+  },
+  {
     "type": "bin_literal",
     "named": true
   },
@@ -562,7 +616,15 @@
     "named": false
   },
   {
+    "type": "elif",
+    "named": false
+  },
+  {
     "type": "else",
+    "named": false
+  },
+  {
+    "type": "elseif",
     "named": false
   },
   {
