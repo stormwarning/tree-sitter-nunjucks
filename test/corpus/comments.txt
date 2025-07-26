@@ -1,0 +1,20 @@
+================
+Comments
+================
+
+<div>
+{# #}
+{# This comment will not be rendered. #}
+foo {#- Comment -#} bar
+</div>
+
+--------
+
+(template
+	(content)
+	(comment_tag)
+	(content)
+	(comment_tag)
+	(content)
+	(comment_tag)
+	(content))
