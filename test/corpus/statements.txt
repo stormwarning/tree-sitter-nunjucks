@@ -1,0 +1,33 @@
+===============
+Statements
+===============
+
+<ul>
+{% for item in sequence %}
+	<li>{{ item }}</li>
+{% endfor %}
+</ul>
+
+--------
+
+(template
+	(content)
+	(statement_tag
+		(statement
+			(for_statement
+				(identifier)
+				(expression
+					(unary_expression
+						(primary_expression
+							(identifier)))))))
+	(content)
+	(expression_tag
+		(expression
+			(unary_expression
+				(primary_expression
+					(identifier)))))
+	(content)
+	(statement_tag
+		(statement
+			(end_statement)))
+	(content))
