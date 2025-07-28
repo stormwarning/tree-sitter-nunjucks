@@ -118,37 +118,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "if_statement"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "else_statement"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "for_statement"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "async_each_statement"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "async_all_statement"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "macro_statement"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "end_statement"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "statement"
             },
             {
               "type": "BLANK"
@@ -580,6 +551,39 @@
         {
           "type": "STRING",
           "value": ")"
+        }
+      ]
+    },
+    "statement": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "if_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "else_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "for_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "async_each_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "async_all_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "macro_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "end_statement"
         }
       ]
     },
@@ -1202,6 +1206,9 @@
   "precedences": [],
   "externals": [],
   "inline": [],
-  "supertypes": [],
+  "supertypes": [
+    "statement",
+    "literal"
+  ],
   "reserved": {}
 }

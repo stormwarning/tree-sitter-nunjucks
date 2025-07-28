@@ -12,6 +12,13 @@ module.exports = grammar({
 
 	extras: (_) => [/\s/],
 
+	supertypes: ($) => [
+		$.statement,
+		// $.expression,
+		// $.primary_expression,
+		$.literal,
+	],
+
 	rules: {
 		template: ($) =>
 			repeat(
@@ -28,17 +35,7 @@ module.exports = grammar({
 		statement_tag: ($) =>
 			seq(
 				choice('{%', '{%-', '{%+'),
-				optional(
-					choice(
-						$.if_statement,
-						$.else_statement,
-						$.for_statement,
-						$.async_each_statement,
-						$.async_all_statement,
-						$.macro_statement,
-						$.end_statement,
-					),
-				),
+				optional($.statement),
 				choice('%}', '-%}', '+%}'),
 			),
 
@@ -114,6 +111,17 @@ module.exports = grammar({
 		 * Statements.
 		 */
 
+		statement: ($) =>
+			choice(
+				$.if_statement,
+				$.else_statement,
+				$.for_statement,
+				$.async_each_statement,
+				$.async_all_statement,
+				$.macro_statement,
+				$.end_statement,
+			),
+
 		if_statement: ($) => seq(choice('if', 'elif', 'elseif'), $.expression),
 
 		else_statement: (_) => 'else',
@@ -184,8 +192,7 @@ module.exports = grammar({
 		 * Generic types.
 		 */
 
-		content: (_) =>
-			prec.right(repeat1(choice(/[^\{]/, /\{[^\#\%]/, '#', '# '))),
+		content: (_) => prec.right(repeat1(choice(/[^\{]/, /\{[^\#\%]/))),
 
 		identifier: (_) => /[a-zA-Z_][\w\d_]*/,
 	},

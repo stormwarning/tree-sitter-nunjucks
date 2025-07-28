@@ -11,10 +11,10 @@ foo {#- Comment -#} bar
 --------
 
 (template
-	(content)
-	(comment_tag)
-	(content)
-	(comment_tag)
-	(content)
-	(comment_tag)
-	(content))
+  (content)
+  (comment_tag)
+  (content)
+  (comment_tag)
+  (content)
+  (comment_tag)
+  (content))

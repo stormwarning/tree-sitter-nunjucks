@@ -9,9 +9,9 @@ Basic statements
 --------
 
 (template
-	(content)
-	(statement_tag)
-	(content))
+  (content)
+  (statement_tag)
+  (content))
 
 ================
 If statement
@@ -25,27 +25,27 @@ If statement
 --------
 
 (template
-	(content)
-	(statement_tag
-		(if_statement
-			(expression
-				(unary_expression
-					(primary_expression
-						(identifier))))))
-	(content)
-	(statement_tag
-		(if_statement
-			(expression
-				(unary_expression
-					(primary_expression
-						(identifier))))))
-	(content)
-	(statement_tag
-		(else_statement))
-	(content)
-	(statement_tag
-		(end_statement))
-	(content))
+  (content)
+  (statement_tag
+    (if_statement
+      (expression
+        (unary_expression
+          (primary_expression
+            (identifier))))))
+  (content)
+  (statement_tag
+    (if_statement
+      (expression
+        (unary_expression
+          (primary_expression
+            (identifier))))))
+  (content)
+  (statement_tag
+    (else_statement))
+  (content)
+  (statement_tag
+    (end_statement))
+  (content))
 
 ================
 For statement
@@ -58,32 +58,32 @@ For statement
 --------
 
 (template
-	(content)
-	(statement_tag
-		(for_statement
-			(identifier)
-			(expression
-				(expression
-					(unary_expression
-						(primary_expression
-							(identifier))))
-				(expression
-					(unary_expression
-						(primary_expression
-							(identifier)))))))
-	(content)
-	(statement_tag
-		(for_statement
-			(identifier)
-			(identifier)
-			(expression
-				(unary_expression
-					(primary_expression
-						(identifier))))))
-	(content)
-	(statement_tag
-		(end_statement))
-	(content))
+  (content)
+  (statement_tag
+    (for_statement
+      (identifier)
+      (expression
+        (expression
+          (unary_expression
+            (primary_expression
+              (identifier))))
+        (expression
+          (unary_expression
+            (primary_expression
+              (identifier)))))))
+  (content)
+  (statement_tag
+    (for_statement
+      (identifier)
+      (identifier)
+      (expression
+        (unary_expression
+          (primary_expression
+            (identifier))))))
+  (content)
+  (statement_tag
+    (end_statement))
+  (content))
 
 ================
 Async loop statements
@@ -97,29 +97,29 @@ Async loop statements
 --------
 
 (template
-	(content)
-	(statement_tag
-		(async_each_statement
-			(identifier)
-			(expression
-				(unary_expression
-					(primary_expression
-						(identifier))))))
-	(content)
-	(statement_tag
-		(end_statement))
-	(content)
-	(statement_tag
-		(async_all_statement
-			(identifier)
-			(expression
-				(unary_expression
-					(primary_expression
-						(identifier))))))
-	(content)
-	(statement_tag
-		(end_statement))
-	(content))
+  (content)
+  (statement_tag
+    (async_each_statement
+      (identifier)
+      (expression
+        (unary_expression
+          (primary_expression
+            (identifier))))))
+  (content)
+  (statement_tag
+    (end_statement))
+  (content)
+  (statement_tag
+    (async_all_statement
+      (identifier)
+      (expression
+        (unary_expression
+          (primary_expression
+            (identifier))))))
+  (content)
+  (statement_tag
+    (end_statement))
+  (content))
 
 ================
 Macro statements
@@ -131,30 +131,28 @@ Macro statements
 --------
 
 (template
-	(content)
-	(statement_tag
-		(macro_statement
-			(function_call
-				(identifier)
-				(expression
-					(unary_expression
-						(primary_expression
-							(identifier))))
-				(identifier)
-				(binary_operator)
-				(expression
-					(unary_expression
-						(primary_expression
-							(literal
-								(string_literal)))))
-				(identifier)
-				(binary_operator)
-				(expression
-					(unary_expression
-						(primary_expression
-							(literal
-								(string_literal))))))))
-	(content)
-	(statement_tag
-		(end_statement))
-	(content))
+  (content)
+  (statement_tag
+    (macro_statement
+      (function_call
+        (identifier)
+        (expression
+          (unary_expression
+            (primary_expression
+              (identifier))))
+        (identifier)
+        (binary_operator)
+        (expression
+          (unary_expression
+            (primary_expression
+              (string_literal))))
+        (identifier)
+        (binary_operator)
+        (expression
+          (unary_expression
+            (primary_expression
+              (string_literal)))))))
+  (content)
+  (statement_tag
+    (end_statement))
+  (content))
