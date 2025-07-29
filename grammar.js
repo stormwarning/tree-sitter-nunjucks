@@ -130,7 +130,7 @@ module.exports = grammar({
 				$.async_all_statement,
 				$.macro_statement,
 				$.set_statement,
-				// $.extends_statement,
+				$.extends_statement,
 				// $.block_statement,
 				$.include_statement,
 				$.import_statement,
@@ -164,6 +164,19 @@ module.exports = grammar({
 				optional($.ternary_expression),
 			),
 
+		extends_statement: ($) =>
+			prec.right(
+				seq(
+					'extends',
+					/** @todo Is only including string literals here too restrictive? */
+					separated(
+						choice($.string_literal, $.identifier),
+						alias('+', $.binary_operator),
+					),
+					optional($.ternary_expression),
+				),
+			),
+
 		include_statement: ($) =>
 			seq(
 				'include',
@@ -185,6 +198,7 @@ module.exports = grammar({
 				seq(
 					choice(
 						separated1($.identifier),
+						/** @todo Is only including string literals here too restrictive? */
 						separated(
 							choice($.string_literal, $.identifier),
 							alias('+', $.binary_operator),

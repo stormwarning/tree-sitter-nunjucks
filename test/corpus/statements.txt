@@ -220,6 +220,33 @@ Set statements
   (content))
 
 ================
+Extends statements
+================
+
+{% extends "base.html" %}
+{% extends parentTemplate %}
+{% extends name + ".html" %}
+
+--------
+
+(template
+  (content)
+  (statement_tag
+    (extends_statement
+      (string_literal)))
+  (content)
+  (statement_tag
+    (extends_statement
+      (identifier)))
+  (content)
+  (statement_tag
+    (extends_statement
+      (identifier)
+      (binary_operator)
+      (string_literal)))
+  (content))
+
+================
 Include statements
 ================
 

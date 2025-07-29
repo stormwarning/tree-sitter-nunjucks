@@ -54,6 +54,10 @@
         "named": true
       },
       {
+        "type": "extends_statement",
+        "named": true
+      },
+      {
         "type": "for_statement",
         "named": true
       },
@@ -220,6 +224,33 @@
       "types": [
         {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "ternary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "extends_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "string_literal",
           "named": true
         },
         {
@@ -845,6 +876,10 @@
   },
   {
     "type": "endset",
+    "named": false
+  },
+  {
+    "type": "extends",
     "named": false
   },
   {
