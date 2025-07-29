@@ -156,3 +156,94 @@ Macro statements
   (statement_tag
     (end_statement))
   (content))
+
+================
+Set statements
+================
+
+{% set username = "joe" %}
+{% set x, y, z = 5 %}
+{% set standardModal %}
+  {% include 'standardModalData.html' %}
+{% endset %}
+
+--------
+
+(template
+  (content)
+  (statement_tag
+    (set_statement
+      (expression
+        (unary_expression
+          (primary_expression
+            (identifier))))
+      (binary_operator)
+      (expression
+        (unary_expression
+          (primary_expression
+            (string_literal))))))
+  (content)
+  (statement_tag
+    (set_statement
+      (expression
+        (unary_expression
+          (primary_expression
+            (identifier))))
+      (expression
+        (unary_expression
+          (primary_expression
+            (identifier))))
+      (expression
+        (unary_expression
+          (primary_expression
+            (identifier))))
+      (binary_operator)
+      (expression
+        (unary_expression
+          (primary_expression
+            (number_literal
+              (dec_literal)))))))
+  (content)
+  (statement_tag
+    (set_statement
+      (expression
+        (unary_expression
+          (primary_expression
+            (identifier))))))
+  (content)
+  (statement_tag
+    (include_statement
+      (string_literal)))
+  (content)
+  (statement_tag
+    (end_statement))
+  (content))
+
+================
+Include statements
+================
+
+{% include "item.html" %}
+{% include name + ".html" %}
+{% include "missing.html" ignore missing %}
+
+--------
+
+(template
+  (content)
+  (statement_tag
+    (include_statement
+      (string_literal)))
+  (content)
+  (statement_tag
+    (include_statement
+      (identifier)
+      (binary_operator)
+      (string_literal)))
+  (content)
+  (statement_tag
+    (include_statement
+      (string_literal)
+      (include_attribute
+        (attribute_ignore))))
+  (content))

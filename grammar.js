@@ -58,6 +58,16 @@ module.exports = grammar({
 		ternary_expression: ($) =>
 			seq('if', $.expression, optional(seq('else', $.expression))),
 
+		binary_expression: ($) =>
+			choice(
+				$.unary_expression,
+				seq($.binary_expression, $.binary_operator, $.unary_expression),
+				// seq(
+				// 	$.binary_expression,
+				// 	alias('is', $.binary_operator),
+				// 	choice($.unary_expression, $.builtin_test),
+				// ),
+			),
 		binary_operator: (_) =>
 			choice(
 				'+',
@@ -119,6 +129,15 @@ module.exports = grammar({
 				$.async_each_statement,
 				$.async_all_statement,
 				$.macro_statement,
+				$.set_statement,
+				// $.extends_statement,
+				// $.block_statement,
+				$.include_statement,
+				// $.import_statement,
+				// $.raw_statement,
+				// $.verbatim_statement,
+				// $.filter_statement,
+				// $.call_statement,
 				$.end_statement,
 			),
 
@@ -137,8 +156,37 @@ module.exports = grammar({
 
 		macro_statement: ($) => seq('macro', $.function_call),
 
-		end_statement: ($) =>
-			choice('endif', 'endfor', 'endeach', 'endall', 'endmacro'),
+		set_statement: ($) =>
+			seq(
+				'set',
+				separated($.expression),
+				optional(seq(alias('=', $.binary_operator), $.expression)),
+				optional($.ternary_expression),
+			),
+
+		include_statement: ($) =>
+			seq(
+				'include',
+				seq(
+					/** @todo Is only including string literals here too restrictive? */
+					choice($.string_literal, $.identifier),
+					optional(
+						repeat(
+							seq(
+								alias('+', $.binary_operator),
+								choice($.string_literal, $.identifier),
+							),
+						),
+					),
+				),
+				repeat($.include_attribute),
+			),
+		include_attribute: ($) => choice($.attribute_ignore, $.attribute_context),
+		attribute_ignore: (_) => seq('ignore', 'missing'),
+		attribute_context: (_) => seq(choice('with', 'without'), 'context'),
+
+		end_statement: (_) =>
+			choice('endif', 'endfor', 'endeach', 'endall', 'endmacro', 'endset'),
 
 		/**
 		 * Literals.
