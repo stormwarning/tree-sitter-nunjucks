@@ -247,3 +247,47 @@ Include statements
       (include_attribute
         (attribute_ignore))))
   (content))
+
+================
+Import statements
+================
+
+{% import "forms.html" as forms %}
+{% from "forms.html" import field, label as description %}
+{% from "forms.html" import field with context %}
+{% import name + ".html" as obj %}
+
+--------
+
+(template
+  (content)
+  (statement_tag
+    (import_statement
+      (string_literal)
+      (import_as
+        (identifier))))
+  (content)
+  (statement_tag
+    (import_statement
+      (import_from
+        (string_literal))
+      (identifier)
+      (identifier)
+      (import_as
+        (identifier))))
+  (content)
+  (statement_tag
+    (import_statement
+      (import_from
+        (string_literal))
+      (identifier)
+      (attribute_context)))
+  (content)
+  (statement_tag
+    (import_statement
+      (identifier)
+      (binary_operator)
+      (string_literal)
+      (import_as
+        (identifier))))
+  (content))

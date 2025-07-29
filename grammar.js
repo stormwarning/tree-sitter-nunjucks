@@ -133,7 +133,7 @@ module.exports = grammar({
 				// $.extends_statement,
 				// $.block_statement,
 				$.include_statement,
-				// $.import_statement,
+				$.import_statement,
 				// $.raw_statement,
 				// $.verbatim_statement,
 				// $.filter_statement,
@@ -167,23 +167,42 @@ module.exports = grammar({
 		include_statement: ($) =>
 			seq(
 				'include',
-				seq(
-					/** @todo Is only including string literals here too restrictive? */
+				/** @todo Is only including string literals here too restrictive? */
+				separated(
 					choice($.string_literal, $.identifier),
-					optional(
-						repeat(
-							seq(
-								alias('+', $.binary_operator),
-								choice($.string_literal, $.identifier),
-							),
-						),
-					),
+					alias('+', $.binary_operator),
 				),
 				repeat($.include_attribute),
 			),
 		include_attribute: ($) => choice($.attribute_ignore, $.attribute_context),
 		attribute_ignore: (_) => seq('ignore', 'missing'),
 		attribute_context: (_) => seq(choice('with', 'without'), 'context'),
+
+		import_statement: ($) =>
+			seq(
+				optional($.import_from),
+				'import',
+				seq(
+					choice(
+						separated1($.identifier),
+						separated(
+							choice($.string_literal, $.identifier),
+							alias('+', $.binary_operator),
+						),
+					),
+				),
+				optional($.import_as),
+				optional($.attribute_context),
+			),
+		import_from: ($) =>
+			seq(
+				'from',
+				separated(
+					choice($.string_literal, $.identifier),
+					alias('+', $.binary_operator),
+				),
+			),
+		import_as: ($) => seq('as', separated1($.identifier)),
 
 		end_statement: (_) =>
 			choice('endif', 'endfor', 'endeach', 'endall', 'endmacro', 'endset'),
@@ -236,6 +255,14 @@ module.exports = grammar({
 				seq("'", repeat(choice(/[^']/, "\\'")), "'"),
 			),
 
+		concat_string_literal: ($) =>
+			seq(
+				choice($.string_literal, $.identifier),
+				optional(
+					repeat(seq(alias('+', $.binary_operator), $.concat_string_literal)),
+				),
+			),
+
 		/**
 		 * Generic types.
 		 */
@@ -248,7 +275,7 @@ module.exports = grammar({
 
 /**
  * @param {Rule} rule
- * @param {string} sep
+ * @param {string | AliasRule} sep
  * @returns {SeqRule}
  */
 function separated1(rule, sep = ',') {
@@ -257,7 +284,7 @@ function separated1(rule, sep = ',') {
 
 /**
  * @param {Rule} rule
- * @param {string} sep
+ * @param {string | AliasRule} sep
  * @returns {ChoiceRule}
  */
 function separated(rule, sep = ',') {

@@ -62,6 +62,10 @@
         "named": true
       },
       {
+        "type": "import_statement",
+        "named": true
+      },
+      {
         "type": "include_statement",
         "named": true
       },
@@ -302,6 +306,79 @@
     }
   },
   {
+    "type": "import_as",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "import_from",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "import_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_context",
+          "named": true
+        },
+        {
+          "type": "binary_operator",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "import_as",
+          "named": true
+        },
+        {
+          "type": "import_from",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "include_attribute",
     "named": true,
     "fields": {},
@@ -326,7 +403,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "binary_operator",
@@ -699,6 +776,10 @@
     "named": false
   },
   {
+    "type": "as",
+    "named": false
+  },
+  {
     "type": "asyncAll",
     "named": false
   },
@@ -775,6 +856,10 @@
     "named": false
   },
   {
+    "type": "from",
+    "named": false
+  },
+  {
     "type": "hex_literal",
     "named": true
   },
@@ -788,6 +873,10 @@
   },
   {
     "type": "ignore",
+    "named": false
+  },
+  {
+    "type": "import",
     "named": false
   },
   {
