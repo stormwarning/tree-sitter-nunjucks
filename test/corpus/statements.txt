@@ -247,6 +247,25 @@ Extends statements
   (content))
 
 ================
+Block statements
+================
+
+{% block css %}
+{% endblock %}
+
+--------
+
+(template
+  (content)
+  (statement_tag
+    (block_statement
+      (identifier)))
+  (content)
+  (statement_tag
+    (end_statement))
+  (content))
+
+================
 Include statements
 ================
 

@@ -131,7 +131,7 @@ module.exports = grammar({
 				$.macro_statement,
 				$.set_statement,
 				$.extends_statement,
-				// $.block_statement,
+				$.block_statement,
 				$.include_statement,
 				$.import_statement,
 				// $.raw_statement,
@@ -177,6 +177,8 @@ module.exports = grammar({
 				),
 			),
 
+		block_statement: ($) => seq('block', $.identifier),
+
 		include_statement: ($) =>
 			seq(
 				'include',
@@ -219,7 +221,15 @@ module.exports = grammar({
 		import_as: ($) => seq('as', separated1($.identifier)),
 
 		end_statement: (_) =>
-			choice('endif', 'endfor', 'endeach', 'endall', 'endmacro', 'endset'),
+			choice(
+				'endif',
+				'endfor',
+				'endeach',
+				'endall',
+				'endmacro',
+				'endset',
+				'endblock',
+			),
 
 		/**
 		 * Literals.
