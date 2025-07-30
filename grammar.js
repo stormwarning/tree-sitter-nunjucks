@@ -145,7 +145,7 @@ module.exports = grammar({
 				$.import_statement,
 				$.raw_statement,
 				$.filter_statement,
-				// $.call_statement,
+				$.call_statement,
 				$.end_statement,
 			),
 
@@ -232,6 +232,9 @@ module.exports = grammar({
 
 		filter_statement: ($) => seq('filter', $.expression),
 
+		call_statement: ($) =>
+			seq('call', optional(seq('(', $.identifier, ')')), $.function_call),
+
 		end_statement: (_) =>
 			choice(
 				'endif',
@@ -244,6 +247,7 @@ module.exports = grammar({
 				'endraw',
 				'endverbatim',
 				'endfilter',
+				'endcall',
 			),
 
 		/**
