@@ -337,3 +337,49 @@ Import statements
       (import_as
         (identifier))))
   (content))
+
+================
+Raw statements
+:skip
+================
+
+{% raw %}
+{{ foo }}
+{% endraw %}
+{% verbatim %}
+{% endverbatim %}
+
+--------
+
+(template
+  (content)
+  (statement_tag
+    (import_statement
+      (string_literal)
+      (import_as
+        (identifier))))
+  (content)
+  (statement_tag
+    (import_statement
+      (import_from
+        (string_literal))
+      (identifier)
+      (identifier)
+      (import_as
+        (identifier))))
+  (content)
+  (statement_tag
+    (import_statement
+      (import_from
+        (string_literal))
+      (identifier)
+      (attribute_context)))
+  (content)
+  (statement_tag
+    (import_statement
+      (identifier)
+      (binary_operator)
+      (string_literal)
+      (import_as
+        (identifier))))
+  (content))

@@ -19,6 +19,15 @@ module.exports = grammar({
 		$.literal,
 	],
 
+	externals: ($) => [
+		// $._inline_comment_content,
+		$.raw_content,
+		// $.front_matter,
+
+		// Check if scanner is in error recovery mode.
+		$.error_sentinel,
+	],
+
 	rules: {
 		template: ($) =>
 			repeat(
@@ -134,8 +143,7 @@ module.exports = grammar({
 				$.block_statement,
 				$.include_statement,
 				$.import_statement,
-				// $.raw_statement,
-				// $.verbatim_statement,
+				$.raw_statement,
 				// $.filter_statement,
 				// $.call_statement,
 				$.end_statement,
@@ -220,6 +228,8 @@ module.exports = grammar({
 			),
 		import_as: ($) => seq('as', separated1($.identifier)),
 
+		raw_statement: (_) => choice('raw', 'verbatim'),
+
 		end_statement: (_) =>
 			choice(
 				'endif',
@@ -229,6 +239,8 @@ module.exports = grammar({
 				'endmacro',
 				'endset',
 				'endblock',
+				'endraw',
+				'endverbatim',
 			),
 
 		/**

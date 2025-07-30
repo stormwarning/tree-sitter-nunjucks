@@ -82,6 +82,10 @@
         "named": true
       },
       {
+        "type": "raw_statement",
+        "named": true
+      },
+      {
         "type": "set_statement",
         "named": true
       }
@@ -568,6 +572,11 @@
     }
   },
   {
+    "type": "raw_statement",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "set_statement",
     "named": true,
     "fields": {},
@@ -902,7 +911,15 @@
     "named": false
   },
   {
+    "type": "endraw",
+    "named": false
+  },
+  {
     "type": "endset",
+    "named": false
+  },
+  {
+    "type": "endverbatim",
     "named": false
   },
   {
@@ -978,11 +995,19 @@
     "named": false
   },
   {
+    "type": "raw",
+    "named": false
+  },
+  {
     "type": "set",
     "named": false
   },
   {
     "type": "true",
+    "named": false
+  },
+  {
+    "type": "verbatim",
     "named": false
   },
   {
