@@ -339,47 +339,47 @@ Import statements
   (content))
 
 ================
-Raw statements
-:skip
+Filter statements
 ================
 
-{% raw %}
-{{ foo }}
-{% endraw %}
-{% verbatim %}
-{% endverbatim %}
+{% filter title %}
+may the force be with you
+{% endfilter %}
+
+{% filter replace("force", "fourth") %}
+may the force be with you
+{% endfilter %}
 
 --------
 
 (template
   (content)
   (statement_tag
-    (import_statement
-      (string_literal)
-      (import_as
-        (identifier))))
+    (filter_statement
+      (expression
+        (unary_expression
+          (primary_expression
+            (identifier))))))
   (content)
   (statement_tag
-    (import_statement
-      (import_from
-        (string_literal))
-      (identifier)
-      (identifier)
-      (import_as
-        (identifier))))
+    (end_statement))
   (content)
   (statement_tag
-    (import_statement
-      (import_from
-        (string_literal))
-      (identifier)
-      (attribute_context)))
+    (filter_statement
+      (expression
+        (unary_expression
+          (primary_expression
+            (function_call
+              (identifier)
+              (expression
+                (unary_expression
+                  (primary_expression
+                    (string_literal))))
+              (expression
+                (unary_expression
+                  (primary_expression
+                    (string_literal))))))))))
   (content)
   (statement_tag
-    (import_statement
-      (identifier)
-      (binary_operator)
-      (string_literal)
-      (import_as
-        (identifier))))
+    (end_statement))
   (content))

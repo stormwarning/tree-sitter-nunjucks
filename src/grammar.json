@@ -633,6 +633,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "filter_statement"
+        },
+        {
+          "type": "SYMBOL",
           "name": "end_statement"
         }
       ]
@@ -1348,6 +1352,19 @@
         }
       ]
     },
+    "filter_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "filter"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        }
+      ]
+    },
     "end_statement": {
       "type": "CHOICE",
       "members": [
@@ -1386,6 +1403,10 @@
         {
           "type": "STRING",
           "value": "endverbatim"
+        },
+        {
+          "type": "STRING",
+          "value": "endfilter"
         }
       ]
     },
