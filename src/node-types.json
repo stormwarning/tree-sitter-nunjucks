@@ -265,6 +265,25 @@
     }
   },
   {
+    "type": "expression_filter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "expression_tag",
     "named": true,
     "fields": {},
@@ -274,6 +293,10 @@
       "types": [
         {
           "type": "expression",
+          "named": true
+        },
+        {
+          "type": "expression_filter",
           "named": true
         },
         {
@@ -1106,6 +1129,10 @@
   },
   {
     "type": "{{-",
+    "named": false
+  },
+  {
+    "type": "|",
     "named": false
   },
   {

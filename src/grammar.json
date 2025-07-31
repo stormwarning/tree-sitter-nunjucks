@@ -60,8 +60,20 @@
                   "type": "CHOICE",
                   "members": [
                     {
-                      "type": "SYMBOL",
-                      "name": "ternary_expression"
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "ternary_expression"
+                        },
+                        {
+                          "type": "REPEAT",
+                          "content": {
+                            "type": "SYMBOL",
+                            "name": "expression_filter"
+                          }
+                        }
+                      ]
                     },
                     {
                       "type": "BLANK"
@@ -577,6 +589,28 @@
         {
           "type": "STRING",
           "value": ")"
+        }
+      ]
+    },
+    "expression_filter": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "|"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "function_call"
+            }
+          ]
         }
       ]
     },

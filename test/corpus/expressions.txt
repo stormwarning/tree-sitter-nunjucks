@@ -313,3 +313,56 @@ Function calls
                   (number_literal
                     (dec_literal))))))))))
   (content))
+
+================
+Filters
+================
+
+{{ foo | title }}
+{{ foo | join(",") }}
+{{ foo | replace("foo", "bar") | capitalize }}
+
+--------
+
+(template
+  (content)
+  (expression_tag
+    (expression
+      (unary_expression
+        (primary_expression
+          (identifier))))
+    (expression_filter
+      (identifier)))
+  (content)
+  (expression_tag
+    (expression
+      (unary_expression
+        (primary_expression
+          (identifier))))
+    (expression_filter
+      (function_call
+        (identifier)
+        (expression
+          (unary_expression
+            (primary_expression
+              (string_literal)))))))
+  (content)
+  (expression_tag
+    (expression
+      (unary_expression
+        (primary_expression
+          (identifier))))
+    (expression_filter
+      (function_call
+        (identifier)
+        (expression
+          (unary_expression
+            (primary_expression
+              (string_literal))))
+        (expression
+          (unary_expression
+            (primary_expression
+              (string_literal))))))
+    (expression_filter
+      (identifier)))
+  (content))

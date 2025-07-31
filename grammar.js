@@ -37,7 +37,12 @@ module.exports = grammar({
 		expression_tag: ($) =>
 			seq(
 				choice('{{', '{{-', '{{+'),
-				optional(seq($.expression, optional($.ternary_expression))),
+				optional(
+					seq(
+						$.expression,
+						optional(choice($.ternary_expression, repeat($.expression_filter))),
+					),
+				),
 				choice('}}', '-}}', '+}}'),
 			),
 
@@ -104,6 +109,11 @@ module.exports = grammar({
 			choice($.primary_expression, seq($.unary_operator, $.unary_expression)),
 		unary_operator: (_) => choice('not', '!'),
 
+		/**
+		 * @todo Add regular_expression type.
+		 * @see https://mozilla.github.io/nunjucks/templating.html#regular-expressions
+		 */
+
 		primary_expression: ($) =>
 			choice(
 				$.function_call,
@@ -125,6 +135,8 @@ module.exports = grammar({
 				),
 				')',
 			),
+
+		expression_filter: ($) => seq('|', choice($.identifier, $.function_call)),
 
 		/**
 		 * Statements.
