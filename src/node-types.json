@@ -54,6 +54,14 @@
         "named": true
       },
       {
+        "type": "case_statement",
+        "named": true
+      },
+      {
+        "type": "default_statement",
+        "named": true
+      },
+      {
         "type": "else_statement",
         "named": true
       },
@@ -95,6 +103,10 @@
       },
       {
         "type": "set_statement",
+        "named": true
+      },
+      {
+        "type": "switch_statement",
         "named": true
       }
     ]
@@ -201,6 +213,21 @@
         },
         {
           "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "case_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
           "named": true
         }
       ]
@@ -685,6 +712,21 @@
     "fields": {}
   },
   {
+    "type": "switch_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "template",
     "named": true,
     "root": true,
@@ -924,11 +966,19 @@
     "named": false
   },
   {
+    "type": "case",
+    "named": false
+  },
+  {
     "type": "context",
     "named": false
   },
   {
     "type": "dec_literal",
+    "named": true
+  },
+  {
+    "type": "default_statement",
     "named": true
   },
   {
@@ -993,6 +1043,10 @@
   },
   {
     "type": "endset",
+    "named": false
+  },
+  {
+    "type": "endswitch",
     "named": false
   },
   {
@@ -1081,6 +1135,10 @@
   },
   {
     "type": "set",
+    "named": false
+  },
+  {
+    "type": "switch",
     "named": false
   },
   {

@@ -675,6 +675,18 @@
         },
         {
           "type": "SYMBOL",
+          "name": "switch_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "case_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "default_statement"
+        },
+        {
+          "type": "SYMBOL",
           "name": "end_statement"
         }
       ]
@@ -1441,6 +1453,36 @@
         }
       ]
     },
+    "switch_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "switch"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        }
+      ]
+    },
+    "case_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "case"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        }
+      ]
+    },
+    "default_statement": {
+      "type": "STRING",
+      "value": "default"
+    },
     "end_statement": {
       "type": "CHOICE",
       "members": [
@@ -1487,6 +1529,10 @@
         {
           "type": "STRING",
           "value": "endcall"
+        },
+        {
+          "type": "STRING",
+          "value": "endswitch"
         }
       ]
     },

@@ -158,6 +158,9 @@ module.exports = grammar({
 				$.raw_statement,
 				$.filter_statement,
 				$.call_statement,
+				$.switch_statement,
+				$.case_statement,
+				$.default_statement,
 				$.end_statement,
 			),
 
@@ -247,6 +250,12 @@ module.exports = grammar({
 		call_statement: ($) =>
 			seq('call', optional(seq('(', $.identifier, ')')), $.function_call),
 
+		switch_statement: ($) => seq('switch', $.expression),
+
+		case_statement: ($) => seq('case', $.expression),
+
+		default_statement: (_) => 'default',
+
 		end_statement: (_) =>
 			choice(
 				'endif',
@@ -260,6 +269,7 @@ module.exports = grammar({
 				'endverbatim',
 				'endfilter',
 				'endcall',
+				'endswitch',
 			),
 
 		/**
