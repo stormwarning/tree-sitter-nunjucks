@@ -414,3 +414,48 @@ The result is
   (statement_tag
     (end_statement))
   (content))
+
+================
+Switch statements
+================
+
+{% switch foo %}
+  {% case 'bar' %}
+    BAR
+  {% case 'baz' %}
+    BAZ
+  {% default %}
+    NEITHER BAR NOR BAZ
+{% endswitch %}
+
+--------
+
+(template
+  (content)
+  (statement_tag
+    (switch_statement
+      (expression
+        (unary_expression
+          (primary_expression
+            (identifier))))))
+  (content)
+  (statement_tag
+    (case_statement
+      (expression
+        (unary_expression
+          (primary_expression
+            (string_literal))))))
+  (content)
+  (statement_tag
+    (case_statement
+      (expression
+        (unary_expression
+          (primary_expression
+            (string_literal))))))
+  (content)
+  (statement_tag
+    (default_statement))
+  (content)
+  (statement_tag
+    (end_statement))
+  (content))
