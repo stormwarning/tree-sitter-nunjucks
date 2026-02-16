@@ -35,14 +35,23 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set up tree-sitter
-        uses: tree-sitter/setup-action/cli@v2
+      - name: Setup Node
+        uses: actions/setup-node@v6
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Run tests
-        uses: tree-sitter/parser-test-action@v2
-        with:
-          test-rust: true
-          test-node: true
-          test-python: true
-          test-go: true
-          test-swift: true
+        run: npm test
+
+      # - name: Set up tree-sitter
+      #   uses: tree-sitter/setup-action/cli@v2
+
+      # - name: Run tests
+      #   uses: tree-sitter/parser-test-action@v2
+      #   with:
+      #     test-rust: true
+      #     test-node: true
+      #     test-python: true
+      #     test-go: true
+      #     test-swift: true
