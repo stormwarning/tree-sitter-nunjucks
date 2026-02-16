@@ -3,28 +3,45 @@
   "name": "nunjucks",
   "rules": {
     "template": {
-      "type": "REPEAT",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "expression_tag"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "statement_tag"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "comment_tag"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "content"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "front_matter"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "expression_tag"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "statement_tag"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "comment_tag"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "content"
+              }
+            ]
           }
-        ]
-      }
+        }
+      ]
     },
     "expression_tag": {
       "type": "SEQ",
@@ -2002,6 +2019,10 @@
     {
       "type": "SYMBOL",
       "name": "raw_content"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "front_matter"
     },
     {
       "type": "SYMBOL",

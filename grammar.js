@@ -22,7 +22,7 @@ module.exports = grammar({
 	externals: ($) => [
 		// $._inline_comment_content,
 		$.raw_content,
-		// $.front_matter,
+		$.front_matter,
 
 		// Check if scanner is in error recovery mode.
 		$.error_sentinel,
@@ -30,8 +30,11 @@ module.exports = grammar({
 
 	rules: {
 		template: ($) =>
-			repeat(
-				choice($.expression_tag, $.statement_tag, $.comment_tag, $.content),
+			seq(
+				optional($.front_matter),
+				repeat(
+					choice($.expression_tag, $.statement_tag, $.comment_tag, $.content),
+				),
 			),
 
 		expression_tag: ($) =>
