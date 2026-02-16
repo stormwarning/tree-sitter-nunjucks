@@ -748,6 +748,10 @@
           "named": true
         },
         {
+          "type": "front_matter",
+          "named": true
+        },
+        {
           "type": "statement_tag",
           "named": true
         }
@@ -1072,6 +1076,10 @@
   {
     "type": "from",
     "named": false
+  },
+  {
+    "type": "front_matter",
+    "named": true
   },
   {
     "type": "hex_literal",

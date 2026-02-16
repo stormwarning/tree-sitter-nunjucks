@@ -1,0 +1,50 @@
+================
+Front matter YAML
+================
+---
+title:  'This is the title: it contains a colon'
+author:
+- Author One
+- Author Two
+keywords: [nothing, nothingness]
+abstract: |
+  This is the abstract.
+
+  It consists of two paragraphs.
+---
+
+--------
+
+(template
+  (front_matter))
+
+================
+Front matter and NJK tag
+================
+---
+prop: value
+---
+
+{% include "item.html" %}
+
+--------
+
+(template
+  (front_matter)
+  (content)
+  (statement_tag
+    (include_statement
+      (string_literal)))
+  (content))
+
+================
+Front matter only
+================
+---
+prop: value
+---
+
+--------
+
+(template
+  (front_matter))
