@@ -720,6 +720,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "custom_statement"
+        },
+        {
+          "type": "SYMBOL",
           "name": "end_statement"
         }
       ]
@@ -1524,6 +1528,10 @@
     "default_statement": {
       "type": "STRING",
       "value": "default"
+    },
+    "custom_statement": {
+      "type": "SYMBOL",
+      "name": "identifier"
     },
     "end_statement": {
       "type": "CHOICE",

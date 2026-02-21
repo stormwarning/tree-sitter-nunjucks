@@ -166,6 +166,7 @@ module.exports = grammar({
 				$.switch_statement,
 				$.case_statement,
 				$.default_statement,
+				$.custom_statement,
 				$.end_statement,
 			),
 
@@ -265,6 +266,8 @@ module.exports = grammar({
 		case_statement: ($) => seq('case', $.expression),
 
 		default_statement: (_) => 'default',
+
+		custom_statement: ($) => $.identifier,
 
 		end_statement: (_) =>
 			choice(
