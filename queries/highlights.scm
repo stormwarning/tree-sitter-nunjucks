@@ -123,6 +123,12 @@
 (string_literal) @string
 
 ; ---------------------------------------------------------------------------
+; Identifiers
+; ---------------------------------------------------------------------------
+
+(identifier) @variable
+
+; ---------------------------------------------------------------------------
 ; Functions
 ; ---------------------------------------------------------------------------
 
@@ -176,8 +182,7 @@
     "upper"
     "urlencode"
     "urlize"
-    "wordcount")
-  (#set! "priority" 110))
+    "wordcount"))
 
 ; Used as a function call:  {{ items | join(",") }}
 (expression_filter
@@ -226,18 +231,15 @@
     "upper"
     "urlencode"
     "urlize"
-    "wordcount")
-  (#set! "priority" 110))
+    "wordcount"))
 
 ; Remaining filters (user-defined)
 (expression_filter
   (function_call
-    (identifier) @function.call)
-  (#set! "priority" 50))
+    (identifier) @function.call))
 
 (expression_filter
-  (identifier) @function.call
-  (#set! "priority" 50))
+  (identifier) @function.call)
 
 (macro_statement
   (function_call
@@ -246,10 +248,3 @@
 (call_statement
   (function_call
     (identifier) @function.call))
-
-; ---------------------------------------------------------------------------
-; Identifiers
-; ---------------------------------------------------------------------------
-
-(identifier) @variable
-(#set! "priority" 10)
