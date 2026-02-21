@@ -232,10 +232,12 @@
 ; Remaining filters (user-defined)
 (expression_filter
   (function_call
-    (identifier) @function.call))
+    (identifier) @function.call)
+  (#set! "priority" 50))
 
 (expression_filter
-  (identifier) @function.call)
+  (identifier) @function.call
+  (#set! "priority" 50))
 
 (macro_statement
   (function_call
