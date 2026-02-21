@@ -129,6 +129,105 @@
 (function_call
   (identifier) @function.call)
 
+; Builtin filters  →  function.builtin
+; Used as plain identifier:  {{ items | lower }}
+(expression_filter
+  (identifier) @function.builtin
+  (#any-of? @function.builtin
+    "abs"
+    "batch"
+    "capitalize"
+    "center"
+    "d"
+    "default"
+    "dictsort"
+    "dump"
+    "e"
+    "escape"
+    "first"
+    "float"
+    "forceescape"
+    "groupby"
+    "indent"
+    "int"
+    "join"
+    "last"
+    "length"
+    "list"
+    "lower"
+    "nl2br"
+    "random"
+    "reject"
+    "rejectattr"
+    "replace"
+    "reverse"
+    "round"
+    "safe"
+    "select"
+    "selectattr"
+    "slice"
+    "sort"
+    "string"
+    "striptags"
+    "sum"
+    "title"
+    "trim"
+    "truncate"
+    "upper"
+    "urlencode"
+    "urlize"
+    "wordcount"))
+
+; Used as a function call:  {{ items | join(",") }}
+(expression_filter
+  (function_call
+    (identifier) @function.builtin)
+  (#any-of? @function.builtin
+    "abs"
+    "batch"
+    "capitalize"
+    "center"
+    "d"
+    "default"
+    "dictsort"
+    "dump"
+    "e"
+    "escape"
+    "first"
+    "float"
+    "forceescape"
+    "groupby"
+    "indent"
+    "int"
+    "join"
+    "last"
+    "length"
+    "list"
+    "lower"
+    "nl2br"
+    "random"
+    "reject"
+    "rejectattr"
+    "replace"
+    "reverse"
+    "round"
+    "safe"
+    "select"
+    "selectattr"
+    "slice"
+    "sort"
+    "string"
+    "striptags"
+    "sum"
+    "title"
+    "trim"
+    "truncate"
+    "upper"
+    "urlencode"
+    "urlize"
+    "wordcount"))
+
+; Remaining filters (user-defined)
 (expression_filter
   (function_call
     (identifier) @function.call))
