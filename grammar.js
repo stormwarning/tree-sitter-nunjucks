@@ -141,6 +141,8 @@ module.exports = grammar({
 
 		expression_filter: ($) => seq('|', choice($.identifier, $.function_call)),
 
+		filtered_expression: ($) => seq($.expression, repeat1($.expression_filter)),
+
 		/**
 		 * Statements.
 		 */
@@ -186,7 +188,12 @@ module.exports = grammar({
 			seq(
 				'set',
 				separated($.expression),
-				optional(seq(alias('=', $.binary_operator), $.expression)),
+				optional(
+					seq(
+						alias('=', $.binary_operator),
+						choice($.filtered_expression, $.expression),
+					),
+				),
 				optional($.ternary_expression),
 			),
 
