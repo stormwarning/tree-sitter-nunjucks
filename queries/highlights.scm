@@ -176,7 +176,8 @@
     "upper"
     "urlencode"
     "urlize"
-    "wordcount"))
+    "wordcount")
+  (#set! "priority" 110))
 
 ; Used as a function call:  {{ items | join(",") }}
 (expression_filter
@@ -225,7 +226,8 @@
     "upper"
     "urlencode"
     "urlize"
-    "wordcount"))
+    "wordcount")
+  (#set! "priority" 110))
 
 ; Remaining filters (user-defined)
 (expression_filter
@@ -248,3 +250,4 @@
 ; ---------------------------------------------------------------------------
 
 (identifier) @variable
+(#set! "priority" 10)
