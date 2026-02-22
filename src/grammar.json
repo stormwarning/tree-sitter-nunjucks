@@ -631,6 +631,22 @@
         }
       ]
     },
+    "filtered_expression": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "expression_filter"
+          }
+        }
+      ]
+    },
     "statement": {
       "type": "CHOICE",
       "members": [
@@ -701,6 +717,10 @@
         {
           "type": "SYMBOL",
           "name": "default_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "custom_statement"
         },
         {
           "type": "SYMBOL",
@@ -933,8 +953,17 @@
                   "value": "binary_operator"
                 },
                 {
-                  "type": "SYMBOL",
-                  "name": "expression"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "filtered_expression"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "expression"
+                    }
+                  ]
                 }
               ]
             },
@@ -1499,6 +1528,10 @@
     "default_statement": {
       "type": "STRING",
       "value": "default"
+    },
+    "custom_statement": {
+      "type": "SYMBOL",
+      "name": "identifier"
     },
     "end_statement": {
       "type": "CHOICE",

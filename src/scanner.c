@@ -59,8 +59,11 @@ bool tree_sitter_nunjucks_external_scanner_scan(
 			while (lexer->lookahead == ' ' || lexer->lookahead == '\t') {
 				advance(lexer);
 			}
+			// Allow optional language tag on the same line, e.g. ---javascript
 			if (lexer->lookahead != '\n' && lexer->lookahead != '\r') {
-				return false;
+				while (lexer->lookahead != '\n' && lexer->lookahead != '\r' && !lexer->eof(lexer)) {
+					advance(lexer);
+				}
 			}
 			for (;;) {
 				// advance over newline
